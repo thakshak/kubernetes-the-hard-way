@@ -4,251 +4,284 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accomplishment | Kubernetes The Hard Way</title>
-    <!-- Import a clean, modern font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Modern sans-serif font similar to the reference page -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #326ce5; /* Kubernetes Blue */
-            --text-main: #202124;
-            --text-secondary: #5f6368;
-            --bg-main: #f8f9fa;
-            --bg-card: #ffffff;
-            --border-color: #e0e0e0;
-        }
-
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.6;
+            background-color: #f7f9fa; /* Light grey background */
+            color: #1a1a1a;
         }
-
-        header {
-            background-color: var(--bg-card);
-            padding: 20px 40px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-bottom: 1px solid var(--border-color);
+        .header {
+            background-color: white;
+            padding: 16px 40px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
-
-        header .logo {
-            font-size: 1.2rem;
+        .header-logo {
             font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: 0.5px;
+            font-size: 20px;
+            color: #326ce5; /* Kubernetes Blue */
+            text-decoration: none;
         }
-
+        .hero {
+            /* Banner background replacing the image from deeplearning.ai */
+            background: linear-gradient(135deg, #152336, #203a43, #326ce5);
+            height: 280px;
+            width: 100%;
+            position: relative;
+        }
         .container {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 960px;
+            margin: -160px auto 60px;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
-
-        .accomplishment-wrapper {
+        .celebration-text {
+            color: white;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            overflow: hidden;
         }
-
-        @media(min-width: 900px) {
-            .accomplishment-wrapper {
+        @media (min-width: 768px) {
+            .card {
                 flex-direction: row;
-                align-items: flex-start;
             }
         }
-
-        .cert-preview {
+        .card-left {
+            padding: 48px;
             flex: 1.2;
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
-
-        .cert-preview img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            display: block;
-            border: 1px solid #f0f0f0;
-        }
-
-        .cert-details {
-            flex: 1;
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .cert-details h1 {
-            font-size: 2rem;
-            margin: 0 0 10px 0;
-            color: var(--text-main);
-        }
-
-        .cert-details h2 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin: 0 0 5px 0;
-            color: var(--text-secondary);
-        }
-
-        .date {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .divider {
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 30px 0;
-        }
-
-        .description h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .description p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .skills-list {
+            border-right: 1px solid #f0f0f0;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-            margin-bottom: 30px;
+            flex-direction: column;
+            justify-content: space-between;
         }
-
-        .skill-tag {
-            background-color: #e8f0fe;
-            color: var(--primary-color);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+        .card-right {
+            padding: 48px;
+            flex: 1;
+            background-color: #fdfdfd;
         }
-
-        .instructor {
+        .course-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+            color: #202124;
+        }
+        .course-instructor {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-top: 48px;
         }
-
-        .instructor-details strong {
-            display: block;
-            font-size: 1rem;
+        .k8s-logo svg {
+            width: 32px;
+            height: 32px;
+            fill: #326ce5;
         }
-
-        .instructor-details span {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+        .instructor-text {
+            font-size: 15px;
+            color: #3c4043;
+            font-weight: 500;
         }
-
-        .actions {
+        .info-row {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 36px;
         }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.2s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: #326ce5;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            margin-right: 16px;
         }
-
-        .btn-primary:hover {
-            background-color: #285bc2;
-            box-shadow: 0 4px 10px rgba(50, 108, 229, 0.3);
+        .icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: #e8f0fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
         }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
+        .icon-circle svg {
+            width: 24px;
+            height: 24px;
+            fill: #326ce5;
         }
-
-        .btn-secondary:hover {
-            background-color: #f1f3f4;
+        .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .info-label {
+            font-size: 13px;
+            color: #5f6368;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: #202124;
+        }
+        .tags-container {
+            margin-top: 36px;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .tag {
+            background-color: white;
+            border: 1px solid #dadce0;
+            color: #3c4043;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .achievement {
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid #f0f0f0;
+            font-weight: 600;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+        .achievement svg {
+            width: 20px;
+            height: 20px;
+            fill: #0f9d58; /* Green checkmark */
+        }
+        .certificate-preview {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .certificate-preview h3 {
+            font-size: 20px;
+            color: #202124;
+            margin-bottom: 24px;
+        }
+        .certificate-preview img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Credential Verification</div>
+    <header class="header">
+        <a href="#" class="header-logo">Thakshak's Certifications</a>
     </header>
 
+    <div class="hero"></div>
+
     <div class="container">
-        <div class="accomplishment-wrapper">
-            
-            <!-- Left Side: Certificate Preview -->
-            <div class="cert-preview">
-                <!-- Make sure this file name matches exactly where your HTML file is saved -->
-                <img src="watermarked_img_12016031071402084473.jpg" alt="Kubernetes The Hard Way Certificate of Completion for Thakshak Gudimetla">
+        <div class="celebration-text">Congratulations on course completion!</div>
+        
+        <div class="card">
+            <!-- Left Side: Course Info -->
+            <div class="card-left">
+                <div class="course-title">Kubernetes The Hard Way</div>
+                
+                <div class="course-instructor">
+                    <div class="k8s-logo">
+                        <!-- Simple Kubernetes Wheel SVG -->
+                        <svg viewBox="0 0 120 119" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M59.914 118.062l-23.738-13.687L12.502 85.34l.024-27.387L12.5 30.565l23.687-13.702 23.714-13.727 23.738 13.687 23.673 19.034-.024 27.387.024 27.388-23.687 13.702-23.711 13.728zm-3.036-107.03v79.471l-18.175 10.514L21.46 81.161l.019-21.037L56.878 11.031zm6.071 0l35.398 49.094.019 21.037-17.242 19.855-18.175-10.514V11.031z"/>
+                        </svg>
+                    </div>
+                    <div class="instructor-text">
+                        Course Creator: <strong>Kelsey Hightower</strong>
+                    </div>
+                </div>
             </div>
 
-            <!-- Right Side: Details and Actions -->
-            <div class="cert-details">
-                <h1>Kubernetes The Hard Way</h1>
-                <h2>Completed by <strong>Thakshak Gudimetla</strong></h2>
-                <div class="date">Awarded September 20, 2026</div>
+            <!-- Right Side: User Info & Tags -->
+            <div class="card-right">
                 
-                <div class="actions">
-                    <button class="btn btn-primary" onclick="alert('This would open the LinkedIn Add-to-Profile dialog!')">Add to LinkedIn</button>
-                    <button class="btn btn-secondary" onclick="alert('This would trigger a PDF download!')">Download PDF</button>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="description">
-                    <h3>About this Certification</h3>
-                    <p>This credential verifies that Thakshak Gudimetla has successfully completed a rigorous, hands-on administrative course building a highly available Kubernetes cluster from scratch. The recipient has demonstrated a deep understanding of core cluster mechanics, bypassing automated provisioning tools to manually configure internal architecture.</p>
-                </div>
-
-                <div class="skills-list">
-                    <span class="skill-tag">PKI & TLS Cryptography</span>
-                    <span class="skill-tag">etcd Clustering</span>
-                    <span class="skill-tag">Control Plane Architecture</span>
-                    <span class="skill-tag">containerd</span>
-                    <span class="skill-tag">Networking & CNI</span>
-                </div>
-
-                <div class="instructor">
-                    <div class="instructor-details">
-                        <strong>Kelsey Hightower</strong>
-                        <span>Course Creator & Lead Instructor</span>
+                <!-- User Row -->
+                <div class="info-row">
+                    <div class="avatar">T</div>
+                    <div class="info-text">
+                        <p class="info-label">Completed By</p>
+                        <p class="info-value">Thakshak Gudimetla</p>
                     </div>
                 </div>
 
+                <!-- Date Row -->
+                <div class="info-row">
+                    <div class="icon-circle">
+                        <!-- Calendar SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/>
+                        </svg>
+                    </div>
+                    <div class="info-text">
+                        <p class="info-label">Completion Date</p>
+                        <p class="info-value">September 20, 2026</p>
+                    </div>
+                </div>
+
+                <!-- Tags Section -->
+                <div class="tags-container">
+                    <p class="info-label">Topics Learned</p>
+                    <div class="tags">
+                        <span class="tag">PKI Architecture</span>
+                        <span class="tag">etcd</span>
+                        <span class="tag">Control Plane</span>
+                        <span class="tag">containerd</span>
+                        <span class="tag">TLS Cryptography</span>
+                    </div>
+                </div>
+
+                <!-- Achievement Line -->
+                <div class="achievement">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    Achievement: Cluster built from scratch
+                </div>
             </div>
         </div>
-    </div>
 
+        <!-- Optional: Render the actual JPG cert we made below the card -->
+        <div class="certificate-preview">
+            <h3>Official Certificate Document</h3>
+            <img src="watermarked_img_12016031071402084473.jpg" alt="Kubernetes The Hard Way Certificate">
+        </div>
+
+    </div>
 </body>
 </html>
