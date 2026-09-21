@@ -13,19 +13,6 @@
             background-color: #f7f9fa; /* Light grey background */
             color: #1a1a1a;
         }
-        .header {
-            background-color: white;
-            padding: 16px 40px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-        }
-        .header-logo {
-            font-weight: 700;
-            font-size: 20px;
-            color: #326ce5; /* Kubernetes Blue */
-            text-decoration: none;
-        }
         .hero {
             /* Banner background */
             background: linear-gradient(135deg, #152336, #203a43, #326ce5);
@@ -35,7 +22,7 @@
         }
         .container {
             max-width: 960px;
-            margin: -160px auto 60px;
+            margin: -200px auto 60px; /* Adjusted negative margin since there is no header now */
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -79,6 +66,13 @@
             margin: 0 0 16px 0;
             line-height: 1.2;
             color: #202124;
+        }
+        .course-thumbnail {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 16px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .course-instructor {
             display: flex;
@@ -201,10 +195,6 @@
 </head>
 <body>
 
-    <header class="header">
-        <a href="#" class="header-logo">Thakshak's Certifications</a>
-    </header>
-
     <div class="hero"></div>
 
     <div class="container">
@@ -213,7 +203,11 @@
         <div class="card">
             <!-- Left Side: Course Info -->
             <div class="card-left">
-                <div class="course-title">Kubernetes The Hard Way</div>
+                <div>
+                    <div class="course-title">Kubernetes The Hard Way</div>
+                    <!-- Course Image Thumbnail -->
+                    <img class="course-thumbnail" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FhSzvmQ_8hbA%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=e615cfa9895ff1ebca478436401f40656df0d98384ad815172f239e2d3d8aae5" alt="Kubernetes The Hard Way Thumbnail">
+                </div>
                 
                 <div class="course-instructor">
                     <div class="k8s-logo">
@@ -254,7 +248,7 @@
                     </div>
                 </div>
 
-                <!-- Tags Section (Updated to include Proxmox Hypervisor) -->
+                <!-- Tags Section -->
                 <div class="tags-container">
                     <p class="info-label">Topics Learned</p>
                     <div class="tags">
